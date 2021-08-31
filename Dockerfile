@@ -15,6 +15,7 @@ RUN chown direct:direct /opt/app
 ENV PROJECT_HOME /opt/app
 
 # Set microservice
+ENV CLOUD_CONFIG=true
 ENV SERVICE_PORT=8080
 ENV SERVICE_USERNAME=admin
 ENV SERVICE_PASSWORD=direct
@@ -29,6 +30,7 @@ ENV CONFIG_SERVICE_PORT=8082
 USER direct:direct
 
 # Copy application artifact
+COPY bootstrap.properties $PROJECT_HOME/bootstrap.properties
 COPY application.properties $PROJECT_HOME/application.properties
 COPY target/config-ui-$BUILD_VERSION.war $PROJECT_HOME/config-ui.war
 
